@@ -1,0 +1,2461 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Zaid Mathematics Academy - Learn mathematics with simple explanations, practical examples and step-by-step guidance.">
+  <title>Zaid Mathematics Academy | Zaid Ahmed</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #081b35;
+      --navy-light: #102b4e;
+      --yellow: #ffc928;
+      --orange: #ff8a24;
+      --white: #ffffff;
+      --light: #f4f7fb;
+      --text: #263449;
+      --muted: #718096;
+      --border: #dce3ed;
+      --green: #168653;
+      --red: #d83b45;
+      --shadow: 0 12px 35px rgba(8,27,53,.10);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.7;
+    }
+
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+
+    .container { width: min(1120px, 92%); margin: auto; }
+    .section { padding: 85px 0; }
+
+    .section-title {
+      text-align: center;
+      color: var(--navy);
+      font-size: clamp(27px, 4vw, 38px);
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 auto 42px;
+    }
+
+    .highlight { color: var(--orange); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 0;
+      border-radius: 8px;
+      padding: 12px 22px;
+      font-weight: 600;
+      transition: .2s;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn:disabled { opacity: .65; cursor: not-allowed; transform: none; }
+
+    .btn-primary { background: var(--yellow); color: var(--navy); }
+    .btn-dark { background: var(--navy); color: white; }
+    .btn-outline { border: 1px solid var(--yellow); color: var(--navy); background: transparent; }
+    .btn-danger { background: var(--red); color: white; }
+    .btn-small { padding: 7px 12px; font-size: 12px; }
+    .hidden { display: none !important; }
+
+    /* Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      box-shadow: 0 3px 15px rgba(0,0,0,.12);
+    }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo { color: white; font-size: 25px; font-weight: 800; letter-spacing: 1px; }
+    .logo span { color: var(--yellow); }
+    .nav-links { display: flex; align-items: center; gap: 22px; list-style: none; }
+    .nav-links a { color: #e9eef6; font-size: 13px; font-weight: 500; }
+    .nav-links a:hover { color: var(--yellow); }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .nav-actions .btn { padding: 9px 13px; font-size: 12px; }
+
+    .nav-actions .btn-outline {
+      color: var(--white);
+      border-color: var(--yellow);
+    }
+
+    .nav-actions .btn-outline:hover {
+      background: var(--yellow);
+      color: var(--navy);
+    }
+
+    .menu-toggle { display: none; background: none; border: 0; color: white; font-size: 28px; }
+    .user-label { color: var(--yellow); font-size: 12px; font-weight: 600; }
+
+    /* Hero */
+    .hero {
+      min-height: 590px;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(120deg, var(--navy), #12365f);
+      color: white;
+      overflow: hidden;
+    }
+
+    .hero-content { max-width: 760px; padding: 90px 0; }
+
+    .hero-tag {
+      display: inline-block;
+      color: var(--yellow);
+      border: 1px solid rgba(255,201,40,.5);
+      border-radius: 30px;
+      padding: 7px 16px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      margin-bottom: 23px;
+    }
+
+    .hero h1 { font-size: clamp(38px, 6vw, 62px); line-height: 1.2; margin-bottom: 13px; }
+    .hero h1 span { color: var(--yellow); }
+    .hero h3 { color: #dce7f5; font-size: clamp(16px, 2.5vw, 21px); font-weight: 500; margin-bottom: 20px; }
+    .hero p { color: #d1dceb; max-width: 680px; margin-bottom: 27px; }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-auth { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 23px; }
+    .hero-auth button { background: transparent; border: 1px solid #8296b1; color: white; }
+    .hero-auth button:hover { border-color: var(--yellow); color: var(--yellow); }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 45px; align-items: center; }
+    .about-copy p { margin-bottom: 17px; color: #536176; }
+    .feature-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .feature {
+      padding: 19px;
+      border-radius: 10px;
+      background: var(--light);
+      border-left: 4px solid var(--yellow);
+      color: var(--navy);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    /* Education */
+    .education { background: var(--light); }
+    .timeline { max-width: 800px; margin: auto; border-left: 3px solid var(--yellow); padding-left: 28px; }
+
+    .timeline-card {
+      background: white;
+      padding: 25px;
+      margin-bottom: 22px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .timeline-card::before {
+      content: "";
+      position: absolute;
+      left: -38px;
+      top: 29px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--orange);
+      border: 3px solid white;
+    }
+
+    .timeline-card h3 { color: var(--navy); margin-bottom: 7px; }
+    .timeline-card p { color: var(--muted); font-size: 14px; }
+
+    /* Skills */
+    .skills-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+
+    .skill {
+      background: var(--navy);
+      color: white;
+      border-radius: 8px;
+      padding: 13px 23px;
+      font-weight: 600;
+      border-bottom: 3px solid var(--yellow);
+    }
+
+    /* Courses */
+    .courses { background: var(--light); }
+    .course-list { max-width: 850px; margin: auto; padding-left: 25px; }
+    .course-list > li { margin-bottom: 13px; padding-left: 5px; }
+    .course-list > li::marker { color: var(--orange); font-size: 19px; }
+    .course-name { color: var(--navy); font-weight: 700; }
+
+    .course-toggle {
+      border: 0;
+      background: transparent;
+      color: var(--orange);
+      font-weight: 600;
+      margin-left: 9px;
+      font-size: 13px;
+    }
+
+    .topics {
+      margin: 9px 0 12px 20px;
+      padding: 13px 20px;
+      background: white;
+      border-radius: 8px;
+      color: #536176;
+      font-size: 14px;
+    }
+
+    .course-apply { text-align: center; margin-top: 35px; }
+
+    /* Contact */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; }
+
+    .contact-info, .contact-form {
+      background: var(--light);
+      padding: 27px;
+      border-radius: 12px;
+    }
+
+    .contact-info h3, .contact-form h3 { color: var(--navy); margin-bottom: 18px; }
+    .contact-info p { margin: 13px 0; color: #536176; overflow-wrap: anywhere; }
+    .contact-info strong { color: var(--navy); }
+
+    .field { margin-bottom: 15px; }
+
+    .field label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .field input, .field textarea, .field select {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: white;
+      outline: none;
+      color: var(--text);
+    }
+
+    .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--orange); }
+    .field textarea { min-height: 110px; resize: vertical; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    .password-wrap { display: flex; gap: 6px; }
+    .password-wrap input { flex: 1; min-width: 0; }
+    .eye-btn { border: 1px solid var(--border); background: white; border-radius: 7px; padding: 0 12px; }
+    .message { font-size: 13px; margin: 10px 0; min-height: 20px; }
+    .message.error { color: var(--red); }
+    .message.success { color: var(--green); }
+
+    /* Footer */
+    footer { background: var(--navy); color: #d7e0ed; text-align: center; padding: 25px 10px; font-size: 13px; }
+
+    /* Modals */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: rgba(3,12,25,.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      overflow-y: auto;
+    }
+
+    .modal-card {
+      background: white;
+      width: min(540px, 100%);
+      max-height: 92vh;
+      overflow-y: auto;
+      padding: 28px;
+      border-radius: 13px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.3);
+      position: relative;
+    }
+
+    .modal-card.wide { width: min(950px, 100%); }
+    .modal-card h2 { color: var(--navy); margin-bottom: 5px; }
+    .modal-intro { color: var(--muted); font-size: 13px; margin-bottom: 20px; }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 17px;
+      background: none;
+      border: 0;
+      color: var(--muted);
+      font-size: 27px;
+    }
+
+    .modal-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 13px; }
+    .divider { text-align: center; color: var(--muted); margin: 13px 0; font-size: 12px; }
+    .google-btn { width: 100%; background: white; border: 1px solid var(--border); color: var(--navy); }
+    .text-link { border: 0; background: none; color: #1768b2; font-size: 13px; text-decoration: underline; }
+    .form-note { color: var(--muted); font-size: 11px; margin-top: 5px; }
+
+    .verification-box {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+      margin-top: 10px;
+    }
+
+    .verification-box h3 { color: var(--navy); margin-bottom: 8px; }
+    .verification-box p { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+
+    /* Dashboard */
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; }
+    .stat-card { background: var(--light); padding: 17px; border-radius: 9px; text-align: center; }
+    .stat-card strong { display: block; color: var(--navy); font-size: 26px; }
+    .stat-card span { color: var(--muted); font-size: 12px; }
+    .table-wrap { overflow-x: auto; margin-top: 18px; }
+    table { width: 100%; border-collapse: collapse; min-width: 700px; font-size: 12px; }
+    th, td { padding: 11px 9px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+    th { background: var(--navy); color: white; }
+
+    .status {
+      display: inline-block;
+      padding: 4px 9px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      background: #fff2cf;
+      color: #8b6200;
+    }
+
+    .status.Accepted { background: #d9f5e6; color: #08713f; }
+    .status.Rejected { background: #ffe0e1; color: #a51d28; }
+    .status.Contacted { background: #dcecff; color: #14518c; }
+    .admin-tools { display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
+    .admin-tools input, .admin-tools select { padding: 9px; border: 1px solid var(--border); border-radius: 7px; }
+    .phone-row { display: grid; grid-template-columns: 130px 1fr; gap: 8px; }
+    .dashboard-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+    @media (max-width: 900px) {
+      .nav-links { gap: 12px; }
+      .nav-links a { font-size: 11px; }
+      .nav-actions .btn { padding: 8px 10px; }
+    }
+
+    @media (max-width: 760px) {
+      .menu-toggle { display: block; }
+      .navbar { flex-wrap: wrap; padding: 13px 0; }
+
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px 0;
+      }
+
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 14px; }
+      .nav-actions { margin-left: auto; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .feature-list { grid-template-columns: 1fr 1fr; }
+      .section { padding: 65px 0; }
+      .hero { min-height: auto; }
+      .hero-content { padding: 75px 0; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-actions { width: 100%; flex-wrap: wrap; }
+      .nav-actions .btn { flex: 1; }
+      .feature-list, .form-row, .stats-grid { grid-template-columns: 1fr; }
+      .modal-card { padding: 23px 18px; }
+      .phone-row { grid-template-columns: 105px 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <header>
+    <div class="container navbar">
+      <a href="#home" class="logo">ZAID<span>.</span></a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation">☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions" id="navActions">
+        <button class="btn btn-primary" data-open-apply>Apply Now</button>
+        <button class="btn btn-outline" data-open-auth="login">Login</button>
+        <button class="btn btn-dark" data-open-auth="signup">Sign Up</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-tag">WELCOME TO MY MATHEMATICS ACADEMY</div>
+          <h1>Hi, I'm <span>Zaid Ahmed</span></h1>
+          <h3>BS Mathematics Student | Batch 2024-2028</h3>
+          <p>I am a BS Mathematics student at the Department of Mathematics, GPGC Mansehra, Hazara University. I help high school and college students understand Maths easily with simple concepts and daily practice.</p>
+
+          <div class="hero-buttons">
+            <button class="btn btn-primary" data-open-apply>Apply Now</button>
+            <a href="#courses" class="btn btn-outline" style="color:white;">View Courses</a>
+          </div>
+
+          <div class="hero-auth" id="heroAuth">
+            <button class="btn" data-open-auth="signup">Sign Up</button>
+            <button class="btn" data-open-auth="login">Login</button>
+            <button class="btn" id="heroGoogle">Continue with Google</button>
+            <button class="btn" id="guestButton">Continue as Guest</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container">
+        <h2 class="section-title">About <span class="highlight">Me</span></h2>
+        <p class="section-subtitle">A little introduction about my academic journey and teaching approach.</p>
+
+        <div class="about-grid">
+          <div class="about-copy">
+            <p>I am Zaid Ahmed, BS Mathematics student, Batch 2024-2028, Department of Mathematics, GPGC Mansehra, Hazara University.</p>
+            <p>I am also a part-time online maths tutor. My teaching style is simple, step-by-step, with practical examples.</p>
+          </div>
+
+          <div class="feature-list">
+            <div class="feature">Student-Focused Teaching</div>
+            <div class="feature">Simple Explanations</div>
+            <div class="feature">Practical Examples</div>
+            <div class="feature">Online Learning</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="section education" id="education">
+      <div class="container">
+        <h2 class="section-title">My <span class="highlight">Education</span></h2>
+        <p class="section-subtitle">My academic background.</p>
+
+        <div class="timeline">
+          <div class="timeline-card">
+            <h3>BS Mathematics</h3>
+            <p><strong>Department:</strong> Department of Mathematics</p>
+            <p><strong>Institution:</strong> Government Post Graduate College Mansehra</p>
+            <p><strong>Current status:</strong> 5th Semester | Batch 2024-2028</p>
+            <p><strong>University:</strong> Hazara University Mansehra</p>
+          </div>
+
+          <div class="timeline-card">
+            <h3>HSSC - Computer Science</h3>
+            <p><strong>Institution:</strong> Government Post Graduate College Mansehra</p>
+            <p><strong>Subjects:</strong> Computer Science, Mathematics, Physics</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <div class="container">
+        <h2 class="section-title">My <span class="highlight">Skills</span></h2>
+        <p class="section-subtitle">Programming and technical skills I have studied or practised.</p>
+
+        <div class="skills-grid">
+          <span class="skill">C</span>
+          <span class="skill">C++</span>
+          <span class="skill">Python</span>
+          <span class="skill">JavaScript</span>
+          <span class="skill">HTML</span>
+          <span class="skill">CSS</span>
+          <span class="skill">LaTeX</span>
+          <span class="skill">MATLAB</span>
+          <span class="skill">MS Excel</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- COURSES -->
+    <section class="section courses" id="courses">
+      <div class="container">
+        <h2 class="section-title">Mathematics <span class="highlight">Courses</span></h2>
+        <p class="section-subtitle">Explore the subjects and their topics.</p>
+
+        <ul class="course-list">
+          <li>
+            <span class="course-name">Arithmetic</span>
+            <button class="course-toggle" aria-expanded="false">Show topics +</button>
+            <ul class="topics hidden">
+              <li>Fractions, Decimals, Percentages</li>
+              <li>HCF &amp; LCM</li>
+              <li>Ratio &amp; Proportion</li>
+              <li>Profit &amp; Loss, Simple Interest</li>
+            </ul>
+          </li>
+
+          <li>
+            <span class="course-name">Algebra</span>
+            <button class="course-toggle" aria-expanded="false">Show topics +</button>
+            <ul class="topics hidden">
+              <li>Algebraic Expressions</li>
+              <li>Factorization</li>
+              <li>Linear Equations</li>
+              <li>Quadratic Equations</li>
+              <li>Functions</li>
+            </ul>
+          </li>
+
+          <li>
+            <span class="course-name">Geometry</span>
+            <button class="course-toggle" aria-expanded="false">Show topics +</button>
+            <ul class="topics hidden">
+              <li>Angles &amp; Triangles</li>
+              <li>Pythagoras Theorem</li>
+              <li>Circles</li>
+              <li>Area &amp; Perimeter / Mensuration</li>
+            </ul>
+          </li>
+
+          <li>
+            <span class="course-name">Trigonometry</span>
+            <button class="course-toggle" aria-expanded="false">Show topics +</button>
+            <ul class="topics hidden">
+              <li>Sin, Cos, Tan Ratios</li>
+              <li>Trigonometric Identities</li>
+              <li>Height &amp; Distance</li>
+              <li>Graphs of Trigonometric Functions</li>
+            </ul>
+          </li>
+
+          <li>
+            <span class="course-name">Sequence &amp; Series</span>
+            <button class="course-toggle" aria-expanded="false">Show topics +</button>
+            <ul class="topics hidden">
+              <li>Arithmetic Progression (AP)</li>
+              <li>Geometric Progression (GP)</li>
+              <li>Harmonic Progression</li>
+              <li>Sum of Series</li>
+            </ul>
+          </li>
+
+          <li>
+            <span class="course-name">Fundamental of Statistics</span>
+            <button class="course-toggle" aria-expanded="false">Show topics +</button>
+            <ul class="topics hidden">
+              <li>Mean, Median, Mode</li>
+              <li>Standard Deviation (SD)</li>
+              <li>Variance (V)</li>
+              <li>Range, Quartiles</li>
+              <li>Bar Graph, Histogram, Pie Chart</li>
+              <li>Frequency Distribution</li>
+            </ul>
+          </li>
+
+          <li>
+            <span class="course-name">Probability</span>
+            <button class="course-toggle" aria-expanded="false">Show topics +</button>
+            <ul class="topics hidden">
+              <li>Basic Probability</li>
+              <li>Dice &amp; Coins Problems</li>
+              <li>Conditional Probability</li>
+              <li>Permutation &amp; Combination</li>
+              <li>Probability Distribution</li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="course-apply">
+          <button class="btn btn-primary" data-open-apply>Apply Now</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="container">
+        <h2 class="section-title">Contact <span class="highlight">Me</span></h2>
+        <p class="section-subtitle">Have a question? Send me a message.</p>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>Contact Information</h3>
+            <p><strong>Email:</strong> <a href="mailto:ahmedmir9710@gmail.com">ahmedmir9710@gmail.com</a></p>
+            <p><strong>Phone / WhatsApp:</strong> <a href="https://wa.me/923400917562" target="_blank" rel="noopener">03400917562</a></p>
+            <p><strong>Location:</strong> Mansehra, Khyber Pakhtunkhwa, Pakistan</p>
+            <p><strong>Institution:</strong> Government Post Graduate College Mansehra, Hazara University</p>
+          </div>
+
+          <form class="contact-form" id="contactForm">
+            <h3>Send a Message</h3>
+
+            <div class="field">
+              <label for="contactName">Name</label>
+              <input id="contactName" required maxlength="100">
+            </div>
+
+            <div class="field">
+              <label for="contactEmail">Email</label>
+              <input id="contactEmail" type="email" required maxlength="150">
+            </div>
+
+            <div class="field">
+              <label for="contactMessage">Message</label>
+              <textarea id="contactMessage" required maxlength="3000"></textarea>
+            </div>
+
+            <p id="contactFeedback" class="message" aria-live="polite"></p>
+            <button class="btn btn-dark" type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 Zaid Ahmed - GPGC Mansehra</footer>
+
+  <!-- AUTHENTICATION MODAL -->
+  <div class="modal hidden" id="authModal">
+    <div class="modal-card">
+      <button class="modal-close" data-close="authModal" aria-label="Close">&times;</button>
+
+      <!-- SIGNUP PANEL -->
+      <div id="signupPanel">
+        <h2>Create Account</h2>
+        <p class="modal-intro">Sign up to apply for mathematics courses.</p>
+
+        <form id="signupForm">
+          <div class="field">
+            <label for="signupName">Full Name</label>
+            <input id="signupName" required maxlength="100" autocomplete="name">
+          </div>
+
+          <div class="field">
+            <label for="signupEmail">Email</label>
+            <input id="signupEmail" type="email" required autocomplete="email">
+          </div>
+
+          <div class="field">
+            <label for="signupPassword">Password</label>
+            <div class="password-wrap">
+              <input id="signupPassword" type="password" minlength="6" required autocomplete="new-password">
+              <button class="eye-btn" type="button" data-eye="signupPassword">Show</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="confirmPassword">Confirm Password</label>
+            <div class="password-wrap">
+              <input id="confirmPassword" type="password" minlength="6" required autocomplete="new-password">
+              <button class="eye-btn" type="button" data-eye="confirmPassword">Show</button>
+            </div>
+          </div>
+
+          <p class="message" id="signupFeedback" aria-live="polite"></p>
+          <button class="btn btn-primary" type="submit" style="width:100%">Create Account</button>
+        </form>
+
+        <div class="divider">OR</div>
+        <button class="btn google-btn" id="signupGoogle" type="button">Continue with Google</button>
+        <p class="form-note">Already registered? <button class="text-link" data-switch-auth="login" type="button">Login</button></p>
+      </div>
+
+      <!-- LOGIN PANEL -->
+      <div id="loginPanel" class="hidden">
+        <h2>Welcome Back</h2>
+        <p class="modal-intro">Login to access your student dashboard.</p>
+
+        <form id="loginForm">
+          <div class="field">
+            <label for="loginEmail">Email</label>
+            <input id="loginEmail" type="email" required autocomplete="email">
+          </div>
+
+          <div class="field">
+            <label for="loginPassword">Password</label>
+            <div class="password-wrap">
+              <input id="loginPassword" type="password" required autocomplete="current-password">
+              <button class="eye-btn" type="button" data-eye="loginPassword">Show</button>
+            </div>
+          </div>
+
+          <p class="message" id="loginFeedback" aria-live="polite"></p>
+          <button class="btn btn-primary" type="submit" style="width:100%">Login</button>
+        </form>
+
+        <p id="forgotPasswordRow" style="margin-top:13px;text-align:right">
+          <button class="text-link" id="forgotPassword" type="button">Forgot Password?</button>
+        </p>
+
+        <!-- EMAIL VERIFICATION PANEL -->
+        <div id="verificationPanel" class="verification-box hidden">
+          <h3>Verify Your Email Address</h3>
+
+          <p id="verificationMessage" class="message error" aria-live="polite">
+            Please verify your email address before continuing.
+          </p>
+
+          <p>
+            Open the verification link sent to your email address.
+            After clicking the link, return here and select the verification button.
+          </p>
+
+          <button class="btn btn-primary" id="resendVerification" type="button" style="width:100%;margin-bottom:10px;">
+            Resend Verification Email
+          </button>
+
+          <button class="btn btn-dark" id="checkVerification" type="button" style="width:100%;margin-bottom:10px;">
+            I've Verified My Email
+          </button>
+
+          <button class="text-link" id="verificationSignOut" type="button">
+            Use Another Account
+          </button>
+        </div>
+
+        <div id="loginExtra">
+          <div class="divider">OR</div>
+          <button class="btn google-btn" id="loginGoogle" type="button">Continue with Google</button>
+          <p class="form-note">Don't have an account? <button class="text-link" data-switch-auth="signup" type="button">Sign Up</button></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPLY MODAL -->
+  <div class="modal hidden" id="applyModal">
+    <div class="modal-card wide">
+      <button class="modal-close" data-close="applyModal" aria-label="Close">&times;</button>
+      <h2>Course Application</h2>
+      <p class="modal-intro">Complete the form below. Required fields are marked with an asterisk (*).</p>
+
+      <form id="applicationForm">
+        <div class="form-row">
+          <div class="field">
+            <label for="firstName">First Name *</label>
+            <input id="firstName" required maxlength="70">
+          </div>
+
+          <div class="field">
+            <label for="lastName">Last Name *</label>
+            <input id="lastName" required maxlength="70">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="applicationEmail">Email *</label>
+            <input id="applicationEmail" type="email" required maxlength="150">
+          </div>
+
+          <div class="field">
+            <label for="applicationCountry">Country *</label>
+            <select id="applicationCountry" required>
+              <option value="">Select country</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Phone Number (Optional)</label>
+          <div class="phone-row">
+            <select id="phoneCode" aria-label="Country calling code">
+              <option value="+92">+92 PK</option>
+              <option value="+91">+91 IN</option>
+              <option value="+971">+971 AE</option>
+              <option value="+44">+44 UK</option>
+              <option value="+1">+1 US/CA</option>
+              <option value="+61">+61 AU</option>
+              <option value="+966">+966 SA</option>
+              <option value="+974">+974 QA</option>
+              <option value="+965">+965 KW</option>
+              <option value="+968">+968 OM</option>
+              <option value="+973">+973 BH</option>
+              <option value="+90">+90 TR</option>
+              <option value="+86">+86 CN</option>
+              <option value="+81">+81 JP</option>
+              <option value="+49">+49 DE</option>
+              <option value="+33">+33 FR</option>
+              <option value="+39">+39 IT</option>
+              <option value="+34">+34 ES</option>
+              <option value="+27">+27 ZA</option>
+              <option value="+20">+20 EG</option>
+              <option value="+880">+880 BD</option>
+              <option value="+94">+94 LK</option>
+              <option value="+977">+977 NP</option>
+              <option value="+60">+60 MY</option>
+              <option value="+65">+65 SG</option>
+              <option value="+64">+64 NZ</option>
+              <option value="+353">+353 IE</option>
+              <option value="+7">+7 RU/KZ</option>
+              <option value="+62">+62 ID</option>
+              <option value="+63">+63 PH</option>
+              <option value="+66">+66 TH</option>
+            </select>
+
+            <input id="applicationPhone" type="tel" placeholder="Phone number">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="applicationTimezone">Time Zone *</label>
+            <select id="applicationTimezone" required>
+              <option value="">Select time zone</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="preferredTime">Preferred Time *</label>
+            <input id="preferredTime" required placeholder="e.g. 5 PM to 6 PM">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="applicationCourse">Course *</label>
+          <select id="applicationCourse" required>
+            <option value="">Select a course</option>
+            <option>Arithmetic</option>
+            <option>Algebra</option>
+            <option>Geometry</option>
+            <option>Trigonometry</option>
+            <option>Sequence &amp; Series</option>
+            <option>Fundamental of Statistics</option>
+            <option>Probability</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field hidden" id="otherCourseField">
+          <label for="otherCourse">Write Your Course Name *</label>
+          <input id="otherCourse" maxlength="100">
+        </div>
+
+        <div class="field">
+          <label for="applicationMessage">Message / Learning Goal (Optional)</label>
+          <textarea id="applicationMessage" maxlength="3000" placeholder="Tell me what you want to learn..."></textarea>
+        </div>
+
+        <p class="message" id="applicationFeedback" aria-live="polite"></p>
+        <button class="btn btn-primary" type="submit">Submit Application</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- DASHBOARD MODAL -->
+  <div class="modal hidden" id="dashboardModal">
+    <div class="modal-card wide">
+      <button class="modal-close" data-close="dashboardModal" aria-label="Close">&times;</button>
+
+      <div class="dashboard-heading">
+        <div>
+          <h2 id="dashboardTitle">My Dashboard</h2>
+          <p class="modal-intro" id="dashboardWelcome"></p>
+        </div>
+
+        <button class="btn btn-outline btn-small" id="refreshDashboard">Refresh</button>
+      </div>
+
+      <div id="studentDashboard">
+        <h3 style="color:var(--navy)">My Applications</h3>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Course</th><th>Submitted</th><th>Status</th></tr>
+            </thead>
+            <tbody id="studentApplications">
+              <tr><td colspan="3">Loading applications...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="adminDashboard" class="hidden">
+        <h3 style="color:var(--navy)">Administrator Panel</h3>
+
+        <div class="stats-grid">
+          <div class="stat-card"><strong id="totalApplications">0</strong><span>Total Applications</span></div>
+          <div class="stat-card"><strong id="totalStudents">0</strong><span>Total Students</span></div>
+          <div class="stat-card"><strong id="pendingApplications">0</strong><span>Pending Applications</span></div>
+        </div>
+
+        <div class="admin-tools">
+          <input id="adminSearch" placeholder="Search name or email">
+
+          <select id="adminCourseFilter">
+            <option value="">All Courses</option>
+            <option>Arithmetic</option>
+            <option>Algebra</option>
+            <option>Geometry</option>
+            <option>Trigonometry</option>
+            <option>Sequence &amp; Series</option>
+            <option>Fundamental of Statistics</option>
+            <option>Probability</option>
+            <option>Other</option>
+          </select>
+
+          <select id="adminStatusFilter">
+            <option value="">All Statuses</option>
+            <option>Pending</option>
+            <option>Accepted</option>
+            <option>Rejected</option>
+            <option>Contacted</option>
+          </select>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Student</th><th>Email</th><th>Phone</th><th>Course</th>
+                <th>Country / Time</th><th>Status</th><th>Actions</th>
+              </tr>
+            </thead>
+
+            <tbody id="adminApplications">
+              <tr><td colspan="7">Loading applications...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <p id="dashboardFeedback" class="message" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <!-- FIREBASE + WEBSITE JAVASCRIPT -->
+  <script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      sendEmailVerification,
+      sendPasswordResetEmail,
+      reload,
+      getIdToken,
+      signOut,
+      onAuthStateChanged,
+      GoogleAuthProvider,
+      signInWithPopup
+    } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+
+    import {
+      getFirestore,
+      doc,
+      getDoc,
+      setDoc,
+      collection,
+      addDoc,
+      getDocs,
+      query,
+      where,
+      updateDoc,
+      deleteDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+
+
+    // --------------------------------------------------
+    // 1. FIREBASE CONFIGURATION
+    // --------------------------------------------------
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCdpxFLqpo_-4fy1ysz3_N3AdbNqhW-278",
+      authDomain: "zaid-mathematics-academy.firebaseapp.com",
+      projectId: "zaid-mathematics-academy",
+      storageBucket: "zaid-mathematics-academy.firebasestorage.app",
+      messagingSenderId: "638337177266",
+      appId: "1:638337177266:web:7e63c331d8858aa6e69bab",
+      measurementId: "G-N2F7BL10SP"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const googleProvider = new GoogleAuthProvider();
+
+
+    // --------------------------------------------------
+    // 2. APPLICATION STATE
+    // --------------------------------------------------
+
+    let currentUser = null;
+    let guestMode = false;
+    let allApplications = [];
+    let allStudents = [];
+    let authStateReady = false;
+
+
+    // --------------------------------------------------
+    // 3. GENERAL HELPERS
+    // --------------------------------------------------
+
+    const $ = (id) => document.getElementById(id);
+
+    function showMessage(id, message, type = "") {
+      const element = $(id);
+      if (!element) return;
+
+      element.textContent = message;
+      element.className = "message " + type;
+    }
+
+    function showModal(id) {
+      $(id).classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal(id) {
+      $(id).classList.add("hidden");
+
+      if (document.querySelectorAll(".modal:not(.hidden)").length === 0) {
+        document.body.style.overflow = "";
+      }
+    }
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      })[char]);
+    }
+
+    function formatDate(value) {
+      if (!value) return "Just now";
+
+      const date = value.toDate ? value.toDate() : new Date(value);
+
+      if (Number.isNaN(date.getTime())) return "Unknown";
+
+      return date.toLocaleDateString();
+    }
+
+    function friendlyAuthError(error) {
+      const code = error?.code || "";
+
+      if (code === "auth/email-already-in-use") {
+        return "This email is already registered. Please Login.";
+      }
+
+      if (
+        code === "auth/invalid-credential" ||
+        code === "auth/wrong-password" ||
+        code === "auth/user-not-found" ||
+        code === "auth/invalid-email"
+      ) {
+        return "Invalid Email or Password.";
+      }
+
+      if (code === "auth/weak-password") {
+        return "Password must contain at least 6 characters.";
+      }
+
+      if (code === "auth/popup-closed-by-user") {
+        return "Google sign-in was cancelled.";
+      }
+
+      if (code === "auth/popup-blocked") {
+        return "Your browser blocked the sign-in popup. Please allow popups and try again.";
+      }
+
+      if (code === "auth/unauthorized-domain") {
+        return "This website domain is not authorized in Firebase Authentication settings.";
+      }
+
+      if (code === "auth/network-request-failed") {
+        return "Network error. Check your internet connection and try again.";
+      }
+
+      if (code === "auth/too-many-requests") {
+        return "Too many attempts. Please wait a while and try again.";
+      }
+
+      if (code === "auth/expired-action-code") {
+        return "This verification link has expired. Please request a new verification email.";
+      }
+
+      if (code === "auth/invalid-action-code") {
+        return "This verification link is invalid or has already been used.";
+      }
+
+      return error?.message || "Something went wrong. Please try again.";
+    }
+
+    function setBusy(button, busy, busyText = "Please wait...") {
+      if (!button) return;
+
+      if (busy) {
+        if (!button.dataset.originalText) {
+          button.dataset.originalText = button.textContent;
+        }
+
+        button.disabled = true;
+        button.textContent = busyText;
+
+      } else {
+        button.disabled = false;
+        button.textContent = button.dataset.originalText || "Submit";
+      }
+    }
+
+
+    // --------------------------------------------------
+    // 4. AUTHENTICATION MODAL HELPERS
+    // --------------------------------------------------
+
+    function openAuth(mode = "login") {
+      $("signupPanel").classList.toggle("hidden", mode !== "signup");
+      $("loginPanel").classList.toggle("hidden", mode !== "login");
+
+      $("loginForm").classList.remove("hidden");
+      $("verificationPanel").classList.add("hidden");
+      $("forgotPasswordRow").classList.remove("hidden");
+      $("loginExtra").classList.remove("hidden");
+
+      showModal("authModal");
+    }
+
+    function showVerificationPrompt(email = "") {
+      $("signupPanel").classList.add("hidden");
+      $("loginPanel").classList.remove("hidden");
+
+      $("loginForm").classList.add("hidden");
+      $("verificationPanel").classList.remove("hidden");
+      $("forgotPasswordRow").classList.add("hidden");
+      $("loginExtra").classList.add("hidden");
+
+      const address = email || auth.currentUser?.email || "";
+
+      showMessage(
+        "verificationMessage",
+        address
+          ? `Please verify your email address (${address}) before continuing. Check your inbox or resend the verification email below.`
+          : "Please verify your email address before continuing.",
+        "error"
+      );
+
+      showModal("authModal");
+    }
+
+
+    // --------------------------------------------------
+    // 5. NAVIGATION AND COURSE ACCORDIONS
+    // --------------------------------------------------
+
+    $("menuToggle").addEventListener("click", () => {
+      $("navLinks").classList.toggle("open");
+    });
+
+    document.querySelectorAll("#navLinks a").forEach(link => {
+      link.addEventListener("click", () => {
+        $("navLinks").classList.remove("open");
+      });
+    });
+
+    document.querySelectorAll(".course-toggle").forEach(button => {
+      button.addEventListener("click", () => {
+        const topics = button.nextElementSibling;
+        const isHidden = topics.classList.toggle("hidden");
+
+        button.textContent = isHidden ? "Show topics +" : "Hide topics −";
+        button.setAttribute("aria-expanded", String(!isHidden));
+      });
+    });
+
+    document.querySelectorAll("[data-close]").forEach(button => {
+      button.addEventListener("click", () => {
+        closeModal(button.dataset.close);
+      });
+    });
+
+    document.querySelectorAll(".modal").forEach(modal => {
+      modal.addEventListener("click", event => {
+        if (event.target === modal) {
+          closeModal(modal.id);
+        }
+      });
+    });
+
+    document.querySelectorAll("[data-open-auth]").forEach(button => {
+      button.addEventListener("click", () => {
+        openAuth(button.dataset.openAuth);
+      });
+    });
+
+    document.querySelectorAll("[data-switch-auth]").forEach(button => {
+      button.addEventListener("click", () => {
+        openAuth(button.dataset.switchAuth);
+      });
+    });
+
+    document.querySelectorAll("[data-eye]").forEach(button => {
+      button.addEventListener("click", () => {
+        const input = $(button.dataset.eye);
+        const isPassword = input.type === "password";
+
+        input.type = isPassword ? "text" : "password";
+        button.textContent = isPassword ? "Hide" : "Show";
+      });
+    });
+
+
+    // --------------------------------------------------
+    // 6. COUNTRY AND TIME ZONE OPTIONS
+    // --------------------------------------------------
+
+    const regionCodes = [
+      "AF","AL","DZ","AD","AO","AG","AR","AM","AU","AT","AZ","BS","BH","BD","BB","BY",
+      "BE","BZ","BJ","BT","BO","BA","BW","BR","BN","BG","BF","BI","KH","CM","CA","CV",
+      "CF","TD","CL","CN","CO","KM","CG","CD","CR","CI","HR","CU","CY","CZ","DK","DJ",
+      "DM","DO","EC","EG","SV","GQ","ER","EE","SZ","ET","FJ","FI","FR","GA","GM","GE",
+      "DE","GH","GR","GD","GT","GN","GW","GY","HT","HN","HU","IS","IN","ID","IR","IQ",
+      "IE","IL","IT","JM","JP","JO","KZ","KE","KI","KP","KR","KW","KG","LA","LV","LB",
+      "LS","LR","LY","LI","LT","LU","MG","MW","MY","MV","ML","MT","MH","MR","MU","MX",
+      "FM","MD","MC","MN","ME","MA","MZ","MM","NA","NR","NP","NL","NZ","NI","NE","NG",
+      "MK","NO","OM","PK","PW","PA","PG","PY","PE","PH","PL","PT","QA","RO","RU","RW",
+      "KN","LC","VC","WS","SM","ST","SA","SN","RS","SC","SL","SG","SK","SI","SB","SO",
+      "ZA","SS","ES","LK","SD","SR","SE","CH","SY","TW","TJ","TZ","TH","TL","TG","TO",
+      "TT","TN","TR","TM","TV","UG","UA","AE","GB","US","UY","UZ","VU","VA","VE","VN",
+      "YE","ZM","ZW"
+    ];
+
+    const displayCountry = new Intl.DisplayNames(["en"], { type: "region" });
+    const countrySelect = $("applicationCountry");
+
+    const countryOptions = regionCodes
+      .map(code => ({ code, name: displayCountry.of(code) }))
+      .filter(item => item.name && item.name !== item.code)
+      .sort((a, b) => a.name.localeCompare(b.name));
+
+    countryOptions.forEach(country => {
+      const option = document.createElement("option");
+      option.value = country.name;
+      option.textContent = country.name;
+      countrySelect.appendChild(option);
+    });
+
+    function populateTimeZones() {
+      let zones = [];
+
+      if (typeof Intl.supportedValuesOf === "function") {
+        zones = Intl.supportedValuesOf("timeZone");
+      } else {
+        zones = [
+          "Asia/Karachi", "Asia/Dubai", "Asia/Kolkata", "Asia/Dhaka",
+          "Europe/London", "Europe/Paris", "Europe/Berlin",
+          "America/New_York", "America/Chicago", "America/Los_Angeles",
+          "Australia/Sydney", "Pacific/Auckland", "UTC"
+        ];
+      }
+
+      if (!zones.includes("UTC")) zones.unshift("UTC");
+
+      const select = $("applicationTimezone");
+
+      zones.forEach(zone => {
+        const option = document.createElement("option");
+        option.value = zone;
+        option.textContent = zone.replaceAll("_", " ");
+        select.appendChild(option);
+      });
+
+      const localZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+      if (zones.includes(localZone)) {
+        select.value = localZone;
+      }
+    }
+
+    populateTimeZones();
+
+    $("applicationCourse").addEventListener("change", () => {
+      const isOther = $("applicationCourse").value === "Other";
+
+      $("otherCourseField").classList.toggle("hidden", !isOther);
+      $("otherCourse").required = isOther;
+    });
+
+
+    // --------------------------------------------------
+    // 7. FIRESTORE USER PROFILE
+    // --------------------------------------------------
+
+    async function ensureUserProfile(firebaseUser, preferredName = "") {
+      const userRef = doc(db, "users", firebaseUser.uid);
+      const userSnapshot = await getDoc(userRef);
+
+      if (userSnapshot.exists()) {
+        const profile = userSnapshot.data();
+
+        return {
+          uid: firebaseUser.uid,
+          name: profile.name || firebaseUser.displayName || preferredName || "Student",
+          email: firebaseUser.email || profile.email || "",
+          role: profile.role || "student"
+        };
+      }
+
+      const name = preferredName ||
+        firebaseUser.displayName ||
+        firebaseUser.email?.split("@")[0] ||
+        "Student";
+
+      const newProfile = {
+        name,
+        email: firebaseUser.email || "",
+        role: "student",
+        createdAt: serverTimestamp()
+      };
+
+      await setDoc(userRef, newProfile);
+
+      return {
+        uid: firebaseUser.uid,
+        name,
+        email: firebaseUser.email || "",
+        role: "student"
+      };
+    }
+
+
+    // --------------------------------------------------
+    // 8. SIGN UP
+    // --------------------------------------------------
+
+    $("signupForm").addEventListener("submit", async event => {
+      event.preventDefault();
+
+      const name = $("signupName").value.trim();
+      const email = $("signupEmail").value.trim();
+      const password = $("signupPassword").value;
+      const confirm = $("confirmPassword").value;
+      const button = event.submitter;
+
+      showMessage("signupFeedback", "");
+
+      if (password !== confirm) {
+        showMessage("signupFeedback", "Passwords do not match.", "error");
+        return;
+      }
+
+      if (password.length < 6) {
+        showMessage(
+          "signupFeedback",
+          "Password must contain at least 6 characters.",
+          "error"
+        );
+        return;
+      }
+
+      setBusy(button, true, "Creating account...");
+
+      try {
+        const result = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+        // Create the student's Firestore profile.
+        await setDoc(doc(db, "users", result.user.uid), {
+          name,
+          email,
+          role: "student",
+          createdAt: serverTimestamp()
+        });
+
+        // Send the Firebase verification email.
+        await sendEmailVerification(result.user);
+
+        guestMode = false;
+        currentUser = null;
+
+        $("signupForm").reset();
+
+        updateNavigation();
+
+        showVerificationPrompt(email);
+
+        showMessage(
+          "verificationMessage",
+          `A verification email has been sent to ${email}. Please check your inbox and verify your email address before continuing.`,
+          "success"
+        );
+
+      } catch (error) {
+        console.error("Signup error:", error);
+
+        // If account creation succeeded but sending the email failed,
+        // keep the user signed in and show the resend option.
+        if (auth.currentUser && !auth.currentUser.emailVerified) {
+          currentUser = null;
+          guestMode = false;
+          updateNavigation();
+          showVerificationPrompt(auth.currentUser.email);
+
+          showMessage(
+            "verificationMessage",
+            "Your account was created, but the verification email could not be sent. Please use Resend Verification Email.",
+            "error"
+          );
+        } else {
+          showMessage(
+            "signupFeedback",
+            friendlyAuthError(error),
+            "error"
+          );
+        }
+
+      } finally {
+        setBusy(button, false);
+      }
+    });
+
+
+    // --------------------------------------------------
+    // 9. LOGIN
+    // --------------------------------------------------
+
+    $("loginForm").addEventListener("submit", async event => {
+      event.preventDefault();
+
+      const email = $("loginEmail").value.trim();
+      const password = $("loginPassword").value;
+      const button = event.submitter;
+
+      showMessage("loginFeedback", "");
+      setBusy(button, true, "Logging in...");
+
+      try {
+        const result = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+        // Get the latest verification status from Firebase.
+        await reload(result.user);
+
+        if (!result.user.emailVerified) {
+          currentUser = null;
+          guestMode = false;
+
+          showVerificationPrompt(result.user.email);
+          return;
+        }
+
+        // Refresh the token so Firestore receives email_verified = true.
+        await getIdToken(result.user, true);
+
+        currentUser = await ensureUserProfile(result.user);
+        guestMode = false;
+
+        updateNavigation();
+        closeModal("authModal");
+        $("loginForm").reset();
+
+      } catch (error) {
+        console.error("Login error:", error);
+
+        showMessage(
+          "loginFeedback",
+          friendlyAuthError(error),
+          "error"
+        );
+
+      } finally {
+        setBusy(button, false);
+      }
+    });
+
+
+    // --------------------------------------------------
+    // 10. RESEND VERIFICATION EMAIL
+    // --------------------------------------------------
+
+    $("resendVerification").addEventListener("click", async () => {
+      const user = auth.currentUser;
+
+      if (!user) {
+        showMessage(
+          "verificationMessage",
+          "Please log in again to resend your verification email.",
+          "error"
+        );
+        return;
+      }
+
+      const button = $("resendVerification");
+      setBusy(button, true, "Sending...");
+
+      try {
+        await reload(user);
+
+        if (user.emailVerified) {
+          await getIdToken(user, true);
+
+          currentUser = await ensureUserProfile(user);
+          guestMode = false;
+
+          updateNavigation();
+          closeModal("authModal");
+
+          alert("Your email is already verified. You can now access your dashboard.");
+          return;
+        }
+
+        await sendEmailVerification(user);
+
+        showMessage(
+          "verificationMessage",
+          `A new verification link has been sent to ${user.email}. Please check your inbox and spam folder.`,
+          "success"
+        );
+
+      } catch (error) {
+        console.error("Resend verification error:", error);
+
+        showMessage(
+          "verificationMessage",
+          friendlyAuthError(error),
+          "error"
+        );
+
+      } finally {
+        setBusy(button, false);
+      }
+    });
+
+
+    // --------------------------------------------------
+    // 11. CHECK EMAIL VERIFICATION
+    // --------------------------------------------------
+
+    $("checkVerification").addEventListener("click", async () => {
+      const user = auth.currentUser;
+
+      if (!user) {
+        showMessage(
+          "verificationMessage",
+          "Your session has expired. Please log in again.",
+          "error"
+        );
+        return;
+      }
+
+      const button = $("checkVerification");
+      setBusy(button, true, "Checking...");
+
+      try {
+        // Reload the Firebase user to obtain the latest emailVerified value.
+        await reload(user);
+
+        if (!user.emailVerified) {
+          showMessage(
+            "verificationMessage",
+            "Your email is not verified yet. Open the verification link in your inbox, then try again.",
+            "error"
+          );
+          return;
+        }
+
+        // Force-refresh the Firebase ID token.
+        await getIdToken(user, true);
+
+        currentUser = await ensureUserProfile(user);
+        guestMode = false;
+
+        $("verificationPanel").classList.add("hidden");
+        $("loginForm").classList.remove("hidden");
+        $("forgotPasswordRow").classList.remove("hidden");
+        $("loginExtra").classList.remove("hidden");
+
+        updateNavigation();
+        closeModal("authModal");
+
+        alert("Email verified successfully! You can now access your dashboard.");
+
+      } catch (error) {
+        console.error("Verification check error:", error);
+
+        showMessage(
+          "verificationMessage",
+          friendlyAuthError(error),
+          "error"
+        );
+
+      } finally {
+        setBusy(button, false);
+      }
+    });
+
+
+    // --------------------------------------------------
+    // 12. SIGN OUT FROM VERIFICATION SCREEN
+    // --------------------------------------------------
+
+    $("verificationSignOut").addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+
+        currentUser = null;
+        guestMode = false;
+
+        $("verificationPanel").classList.add("hidden");
+        $("loginForm").classList.remove("hidden");
+        $("forgotPasswordRow").classList.remove("hidden");
+        $("loginExtra").classList.remove("hidden");
+
+        updateNavigation();
+
+        openAuth("login");
+
+      } catch (error) {
+        console.error("Sign-out error:", error);
+
+        showMessage(
+          "verificationMessage",
+          friendlyAuthError(error),
+          "error"
+        );
+      }
+    });
+
+
+    // --------------------------------------------------
+    // 13. FORGOT PASSWORD
+    // --------------------------------------------------
+
+    $("forgotPassword").addEventListener("click", async () => {
+      const email = $("loginEmail").value.trim();
+
+      if (!email) {
+        showMessage(
+          "loginFeedback",
+          "Please enter your email address first.",
+          "error"
+        );
+
+        $("loginEmail").focus();
+        return;
+      }
+
+      try {
+        await sendPasswordResetEmail(auth, email);
+
+        showMessage(
+          "loginFeedback",
+          "Password reset link sent to your email.",
+          "success"
+        );
+
+      } catch (error) {
+        showMessage(
+          "loginFeedback",
+          friendlyAuthError(error),
+          "error"
+        );
+      }
+    });
+
+
+    // --------------------------------------------------
+    // 14. GOOGLE SIGN-IN
+    // --------------------------------------------------
+
+    async function googleSignIn() {
+      try {
+        const result = await signInWithPopup(auth, googleProvider);
+
+        await reload(result.user);
+
+        if (!result.user.emailVerified) {
+          currentUser = null;
+          guestMode = false;
+
+          showVerificationPrompt(result.user.email);
+          return;
+        }
+
+        await getIdToken(result.user, true);
+
+        currentUser = await ensureUserProfile(result.user);
+        guestMode = false;
+
+        updateNavigation();
+        closeModal("authModal");
+
+      } catch (error) {
+        console.error("Google sign-in error:", error);
+
+        const message = friendlyAuthError(error);
+
+        if ($("authModal").classList.contains("hidden")) {
+          openAuth("login");
+        }
+
+        showMessage(
+          $("signupPanel").classList.contains("hidden")
+            ? "loginFeedback"
+            : "signupFeedback",
+          message,
+          "error"
+        );
+      }
+    }
+
+    $("loginGoogle").addEventListener("click", googleSignIn);
+    $("signupGoogle").addEventListener("click", googleSignIn);
+    $("heroGoogle").addEventListener("click", googleSignIn);
+
+
+    // --------------------------------------------------
+    // 15. GUEST MODE
+    // --------------------------------------------------
+
+    async function enterGuestMode() {
+      try {
+        guestMode = true;
+
+        if (auth.currentUser) {
+          await signOut(auth);
+        }
+
+        currentUser = {
+          name: "Guest",
+          email: "",
+          role: "guest"
+        };
+
+        updateNavigation();
+
+      } catch (error) {
+        console.error("Guest mode error:", error);
+        guestMode = false;
+        currentUser = null;
+        updateNavigation();
+      }
+    }
+
+    $("guestButton").addEventListener("click", enterGuestMode);
+
+
+    // --------------------------------------------------
+    // 16. AUTHENTICATION STATE
+    // --------------------------------------------------
+
+    onAuthStateChanged(auth, async firebaseUser => {
+      authStateReady = true;
+
+      if (firebaseUser) {
+        try {
+          // Refresh the user's verification information.
+          await reload(firebaseUser);
+
+          const profile = await ensureUserProfile(firebaseUser);
+
+          // Require verification for students and administrators.
+          if (!firebaseUser.emailVerified) {
+            currentUser = null;
+            guestMode = false;
+
+            updateNavigation();
+            showVerificationPrompt(firebaseUser.email);
+
+            return;
+          }
+
+          // Make sure Firestore receives the latest verification claim.
+          await getIdToken(firebaseUser, true);
+
+          currentUser = profile;
+          guestMode = false;
+
+          updateNavigation();
+
+          // If the verification screen was open, close it after verification.
+          if (!$("verificationPanel").classList.contains("hidden")) {
+            $("verificationPanel").classList.add("hidden");
+            $("loginForm").classList.remove("hidden");
+            $("forgotPasswordRow").classList.remove("hidden");
+            $("loginExtra").classList.remove("hidden");
+            closeModal("authModal");
+          }
+
+        } catch (error) {
+          console.error("Could not load user profile:", error);
+
+          currentUser = null;
+          updateNavigation();
+
+          alert(
+            "Your account is signed in, but your profile could not be loaded. Check your Firestore rules and internet connection."
+          );
+        }
+
+      } else if (guestMode) {
+        currentUser = {
+          name: "Guest",
+          email: "",
+          role: "guest"
+        };
+
+        updateNavigation();
+
+      } else {
+        currentUser = null;
+        updateNavigation();
+      }
+    });
+
+
+    // --------------------------------------------------
+    // 17. NAVIGATION BASED ON LOGIN STATUS
+    // --------------------------------------------------
+
+    function updateNavigation() {
+      const actions = $("navActions");
+      const heroAuth = $("heroAuth");
+
+      if (!currentUser) {
+        actions.innerHTML = `
+          <button class="btn btn-primary" data-open-apply>Apply Now</button>
+          <button class="btn btn-outline" data-open-auth="login">Login</button>
+          <button class="btn btn-dark" data-open-auth="signup">Sign Up</button>
+        `;
+
+        heroAuth.classList.remove("hidden");
+
+        heroAuth.innerHTML = `
+          <button class="btn" data-open-auth="signup">Sign Up</button>
+          <button class="btn" data-open-auth="login">Login</button>
+          <button class="btn" id="heroGoogle">Continue with Google</button>
+          <button class="btn" id="guestButton">Continue as Guest</button>
+        `;
+
+      } else {
+        const guest = currentUser.role === "guest";
+        const name = escapeHTML(currentUser.name);
+
+        actions.innerHTML = `
+          <span class="user-label">${guest ? "Guest Mode" : "Hi, " + name}</span>
+
+          ${guest ? "" : '<button class="btn btn-outline" id="dashboardButton">My Dashboard</button>'}
+
+          <button class="btn btn-primary" id="logoutButton">
+            ${guest ? "Exit Guest" : "Logout"}
+          </button>
+        `;
+
+        heroAuth.classList.add("hidden");
+
+        $("logoutButton").addEventListener("click", async () => {
+          if (guest) {
+            guestMode = false;
+            currentUser = null;
+            updateNavigation();
+          } else {
+            await signOut(auth);
+          }
+        });
+
+        if (!guest) {
+          $("dashboardButton").addEventListener("click", openDashboard);
+        }
+      }
+
+      bindDynamicButtons();
+    }
+
+    function bindDynamicButtons() {
+      document.querySelectorAll("[data-open-apply]").forEach(button => {
+        button.onclick = openApplication;
+      });
+
+      document.querySelectorAll("[data-open-auth]").forEach(button => {
+        button.onclick = () => openAuth(button.dataset.openAuth);
+      });
+
+      const googleButton = $("heroGoogle");
+
+      if (googleButton) {
+        googleButton.onclick = googleSignIn;
+      }
+
+      const guestButton = $("guestButton");
+
+      if (guestButton) {
+        guestButton.onclick = enterGuestMode;
+      }
+    }
+
+    bindDynamicButtons();
+
+
+    // --------------------------------------------------
+    // 18. APPLY NOW ACCESS AND FORM
+    // --------------------------------------------------
+
+    function openApplication() {
+      // Block unverified accounts.
+      if (auth.currentUser && !auth.currentUser.emailVerified) {
+        showVerificationPrompt(auth.currentUser.email);
+        return;
+      }
+
+      if (!currentUser || currentUser.role === "guest") {
+        alert("Please Login or Sign Up to Apply. Guest users can only view.");
+        openAuth("login");
+        return;
+      }
+
+      $("applicationForm").reset();
+
+      $("otherCourseField").classList.add("hidden");
+      $("otherCourse").required = false;
+
+      $("applicationEmail").value = currentUser.email || "";
+
+      const nameParts = (currentUser.name || "").trim().split(/\s+/);
+
+      $("firstName").value = nameParts[0] || "";
+      $("lastName").value = nameParts.slice(1).join(" ");
+
+      showMessage("applicationFeedback", "");
+      showModal("applyModal");
+    }
+
+    $("applicationForm").addEventListener("submit", async event => {
+      event.preventDefault();
+
+      // Check verification again before submitting.
+      if (auth.currentUser && !auth.currentUser.emailVerified) {
+        showVerificationPrompt(auth.currentUser.email);
+        return;
+      }
+
+      if (!auth.currentUser || !currentUser || currentUser.role === "guest") {
+        showMessage(
+          "applicationFeedback",
+          "Please Login or Sign Up to Apply.",
+          "error"
+        );
+        return;
+      }
+
+      const button = event.submitter;
+      setBusy(button, true, "Submitting...");
+
+      const course = $("applicationCourse").value;
+
+      const finalCourse = course === "Other"
+        ? $("otherCourse").value.trim()
+        : course;
+
+      const firstName = $("firstName").value.trim();
+      const lastName = $("lastName").value.trim();
+      const email = $("applicationEmail").value.trim();
+
+      const phoneNumber = $("applicationPhone").value.trim();
+      const phoneCode = $("phoneCode").value;
+
+      const fullPhone = phoneNumber
+        ? phoneCode + phoneNumber.replace(/\D/g, "")
+        : "";
+
+      try {
+        await addDoc(collection(db, "applications"), {
+          userId: auth.currentUser.uid,
+          firstName,
+          lastName,
+          name: `${firstName} ${lastName}`.trim(),
+          email,
+          phone: fullPhone,
+          phoneCode,
+          country: $("applicationCountry").value,
+          timezone: $("applicationTimezone").value,
+          preferredTime: $("preferredTime").value.trim(),
+          course: finalCourse,
+          message: $("applicationMessage").value.trim(),
+          status: "Pending",
+          createdAt: serverTimestamp()
+        });
+
+        showMessage(
+          "applicationFeedback",
+          "Application Received! Zaid will contact you on WhatsApp / Email soon.",
+          "success"
+        );
+
+        $("applicationForm").reset();
+
+        $("otherCourseField").classList.add("hidden");
+        $("otherCourse").required = false;
+
+        setTimeout(() => closeModal("applyModal"), 2200);
+
+      } catch (error) {
+        console.error("Application submission error:", error);
+
+        showMessage(
+          "applicationFeedback",
+          "Your application could not be submitted. Please try again. " +
+          friendlyAuthError(error),
+          "error"
+        );
+
+      } finally {
+        setBusy(button, false);
+      }
+    });
+
+
+    // --------------------------------------------------
+    // 19. CONTACT FORM
+    // --------------------------------------------------
+
+    $("contactForm").addEventListener("submit", async event => {
+      event.preventDefault();
+
+      // Block unverified accounts.
+      if (auth.currentUser && !auth.currentUser.emailVerified) {
+        showVerificationPrompt(auth.currentUser.email);
+        return;
+      }
+
+      if (!auth.currentUser || !currentUser || currentUser.role === "guest") {
+        alert("Please Login or Sign Up to use the contact form. Guest users can only view.");
+        openAuth("login");
+        return;
+      }
+
+      const button = event.submitter;
+      setBusy(button, true, "Sending...");
+
+      try {
+        await addDoc(collection(db, "messages"), {
+          userId: auth.currentUser.uid,
+          name: $("contactName").value.trim(),
+          email: $("contactEmail").value.trim(),
+          message: $("contactMessage").value.trim(),
+          createdAt: serverTimestamp()
+        });
+
+        showMessage(
+          "contactFeedback",
+          "Your message has been saved successfully. Thank you!",
+          "success"
+        );
+
+        $("contactForm").reset();
+
+      } catch (error) {
+        console.error("Contact form error:", error);
+
+        showMessage(
+          "contactFeedback",
+          "Message could not be saved. Please try again. " +
+          friendlyAuthError(error),
+          "error"
+        );
+
+      } finally {
+        setBusy(button, false);
+      }
+    });
+
+
+    // --------------------------------------------------
+    // 20. STUDENT AND ADMIN DASHBOARD
+    // --------------------------------------------------
+
+    async function openDashboard() {
+      if (!auth.currentUser || !currentUser || currentUser.role === "guest") {
+        alert("Please login to access your dashboard.");
+        return;
+      }
+
+      // Verify the latest status before opening the dashboard.
+      try {
+        await reload(auth.currentUser);
+
+        if (!auth.currentUser.emailVerified) {
+          currentUser = null;
+          updateNavigation();
+          showVerificationPrompt(auth.currentUser.email);
+          return;
+        }
+
+        await getIdToken(auth.currentUser, true);
+
+      } catch (error) {
+        console.error("Dashboard authentication check failed:", error);
+        alert("Could not verify your login. Please try again.");
+        return;
+      }
+
+      $("dashboardWelcome").textContent =
+        `Welcome, ${currentUser.name} | ${currentUser.email}`;
+
+      const isAdmin = currentUser.role === "admin";
+
+      $("dashboardTitle").textContent = isAdmin
+        ? "Admin Dashboard"
+        : "My Dashboard";
+
+      $("adminDashboard").classList.toggle("hidden", !isAdmin);
+      $("studentDashboard").classList.toggle("hidden", isAdmin);
+
+      showMessage("dashboardFeedback", "");
+      showModal("dashboardModal");
+
+      await refreshDashboard();
+    }
+
+    async function refreshDashboard() {
+      if (!auth.currentUser || !currentUser) return;
+
+      try {
+        if (currentUser.role === "admin") {
+          await loadAdminDashboard();
+        } else if (currentUser.role === "student") {
+          await loadStudentApplications();
+        }
+
+      } catch (error) {
+        console.error("Dashboard refresh error:", error);
+
+        showMessage(
+          "dashboardFeedback",
+          "Could not load dashboard information. Check your Firestore rules and internet connection.",
+          "error"
+        );
+      }
+    }
+
+    $("refreshDashboard").addEventListener("click", refreshDashboard);
+
+
+    // --------------------------------------------------
+    // 21. STUDENT APPLICATIONS
+    // --------------------------------------------------
+
+    async function loadStudentApplications() {
+      if (!auth.currentUser || !auth.currentUser.emailVerified) {
+        throw new Error("Email verification is required.");
+      }
+
+      const applicationsQuery = query(
+        collection(db, "applications"),
+        where("userId", "==", auth.currentUser.uid)
+      );
+
+      const snapshot = await getDocs(applicationsQuery);
+      const tbody = $("studentApplications");
+
+      if (snapshot.empty) {
+        tbody.innerHTML =
+          '<tr><td colspan="3">You have not submitted any applications yet.</td></tr>';
+        return;
+      }
+
+      const rows = [];
+
+      snapshot.forEach(applicationDoc => {
+        const item = applicationDoc.data();
+
+        rows.push({
+          course: item.course || "Not specified",
+          date: formatDate(item.createdAt),
+          status: item.status || "Pending"
+        });
+      });
+
+      tbody.innerHTML = rows.map(item => `
+        <tr>
+          <td>${escapeHTML(item.course)}</td>
+          <td>${escapeHTML(item.date)}</td>
+          <td>
+            <span class="status ${escapeHTML(item.status)}">
+              ${escapeHTML(item.status)}
+            </span>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+
+    // --------------------------------------------------
+    // 22. ADMIN DASHBOARD
+    // --------------------------------------------------
+
+    async function loadAdminDashboard() {
+      if (!auth.currentUser || !auth.currentUser.emailVerified) {
+        throw new Error("Verified administrator access is required.");
+      }
+
+      const [applicationSnapshot, studentSnapshot] = await Promise.all([
+        getDocs(collection(db, "applications")),
+        getDocs(collection(db, "users"))
+      ]);
+
+      allApplications = [];
+      allStudents = [];
+
+      applicationSnapshot.forEach(item => {
+        allApplications.push({
+          id: item.id,
+          ...item.data()
+        });
+      });
+
+      studentSnapshot.forEach(item => {
+        allStudents.push({
+          id: item.id,
+          ...item.data()
+        });
+      });
+
+      $("totalApplications").textContent = allApplications.length;
+      $("totalStudents").textContent = allStudents.length;
+
+      $("pendingApplications").textContent =
+        allApplications.filter(item => item.status === "Pending").length;
+
+      renderAdminApplications();
+    }
+
+    function renderAdminApplications() {
+      const search = $("adminSearch").value.trim().toLowerCase();
+      const courseFilter = $("adminCourseFilter").value;
+      const statusFilter = $("adminStatusFilter").value;
+
+      const filtered = allApplications.filter(item => {
+        const matchesSearch =
+          (item.name || "").toLowerCase().includes(search) ||
+          (item.email || "").toLowerCase().includes(search);
+
+        const matchesCourse =
+          !courseFilter || item.course === courseFilter;
+
+        const matchesStatus =
+          !statusFilter || item.status === statusFilter;
+
+        return matchesSearch && matchesCourse && matchesStatus;
+      });
+
+      const tbody = $("adminApplications");
+
+      if (filtered.length === 0) {
+        tbody.innerHTML =
+          '<tr><td colspan="7">No applications found.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(item => {
+        const safeId = escapeHTML(item.id);
+
+        const phoneDigits = String(item.phone || "").replace(/\D/g, "");
+
+        const whatsapp = phoneDigits
+          ? `<a href="https://wa.me/${encodeURIComponent(phoneDigits)}" target="_blank" rel="noopener">WhatsApp</a>`
+          : "No phone";
+
+        return `
+          <tr>
+            <td>${escapeHTML(item.name || "")}</td>
+            <td>${escapeHTML(item.email || "")}</td>
+            <td>${escapeHTML(item.phone || "Not provided")}</td>
+            <td>${escapeHTML(item.course || "")}</td>
+
+            <td>
+              ${escapeHTML(item.country || "")}<br>
+              ${escapeHTML(item.timezone || "")}<br>
+              ${escapeHTML(item.preferredTime || "")}
+            </td>
+
+            <td>
+              <span class="status ${escapeHTML(item.status || "Pending")}">
+                ${escapeHTML(item.status || "Pending")}
+              </span>
+            </td>
+
+            <td>
+              ${whatsapp}<br>
+
+              <button class="btn btn-small btn-primary"
+                data-status-id="${safeId}" data-status="Accepted">
+                Accept
+              </button>
+
+              <button class="btn btn-small btn-danger"
+                data-status-id="${safeId}" data-status="Rejected">
+                Reject
+              </button>
+
+              <button class="btn btn-small btn-dark"
+                data-status-id="${safeId}" data-status="Contacted">
+                Contacted
+              </button>
+
+              <button class="text-link" data-delete-id="${safeId}">
+                Delete
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join("");
+
+      tbody.querySelectorAll("[data-status-id]").forEach(button => {
+        button.addEventListener("click", () => {
+          changeApplicationStatus(
+            button.dataset.statusId,
+            button.dataset.status
+          );
+        });
+      });
+
+      tbody.querySelectorAll("[data-delete-id]").forEach(button => {
+        button.addEventListener("click", () => {
+          removeApplication(button.dataset.deleteId);
+        });
+      });
+    }
+
+    $("adminSearch").addEventListener("input", renderAdminApplications);
+    $("adminCourseFilter").addEventListener("change", renderAdminApplications);
+    $("adminStatusFilter").addEventListener("change", renderAdminApplications);
+
+
+    // --------------------------------------------------
+    // 23. ADMIN STATUS UPDATE AND DELETE
+    // --------------------------------------------------
+
+    async function changeApplicationStatus(applicationId, status) {
+      if (
+        !auth.currentUser ||
+        !auth.currentUser.emailVerified ||
+        !currentUser ||
+        currentUser.role !== "admin"
+      ) {
+        alert("Verified administrator access required.");
+        return;
+      }
+
+      try {
+        await updateDoc(doc(db, "applications", applicationId), {
+          status
+        });
+
+        await loadAdminDashboard();
+
+        showMessage(
+          "dashboardFeedback",
+          `Application status changed to ${status}.`,
+          "success"
+        );
+
+      } catch (error) {
+        console.error("Status update error:", error);
+
+        showMessage(
+          "dashboardFeedback",
+          "Could not update application status.",
+          "error"
+        );
+      }
+    }
+
+    async function removeApplication(applicationId) {
+      if (
+        !auth.currentUser ||
+        !auth.currentUser.emailVerified ||
+        !currentUser ||
+        currentUser.role !== "admin"
+      ) {
+        alert("Verified administrator access required.");
+        return;
+      }
+
+      if (!confirm("Are you sure you want to delete this application?")) {
+        return;
+      }
+
+      try {
+        await deleteDoc(doc(db, "applications", applicationId));
+
+        await loadAdminDashboard();
+
+        showMessage(
+          "dashboardFeedback",
+          "Application deleted successfully.",
+          "success"
+        );
+
+      } catch (error) {
+        console.error("Delete application error:", error);
+
+        showMessage(
+          "dashboardFeedback",
+          "Could not delete application.",
+          "error"
+        );
+      }
+    }
+
+  </script>
+</body>
+</html>
